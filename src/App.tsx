@@ -1,24 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { animated, useSpring } from "react-spring";
+import { useState } from "react";
 
 function App() {
+  const [BPM, setBPM] = useState(180);
+
+  const props = useSpring({
+    loop: true,
+    from: { transform: "scale(1)" },
+    to: { transform: "scale(1.2)" },
+    config: { frequency: 60 / BPM },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "25%",
+        flexDirection: "column",
+      }}
+    >
+      <animated.div
+        style={{
+          width: 200,
+          height: 200,
+          borderRadius: "50%",
+          border: "solid #166BE5 5px",
+          ...props,
+        }}
+      ></animated.div>
+      <div
+        style={{
+          marginTop: "32px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <input
+          type="range"
+          value={BPM}
+          min={0}
+          max={420}
+          step={1}
+          onChange={(e) => {
+            setBPM(parseInt(e.target.value));
+          }}
+        />
+        <div>{BPM}</div>
+      </div>
     </div>
   );
 }
