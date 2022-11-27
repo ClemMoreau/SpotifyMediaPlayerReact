@@ -1,7 +1,15 @@
-const style = {
-    primaryGreen: '#1DB954',
-    black: '#191414',
-    white: '#FFFFFF',
+const styleconfig = {
+    colors: {
+        primary: '#1DB954',
+        black: '#191414',
+        white: '#FFFFFF',
+    },
+
+    logo:{
+        sm: '50',
+        md: '100',
+        lg: '150', 
+    },
     
     buttonWidth: {
         sm: '15',
@@ -16,4 +24,4 @@ const style = {
     }
 }
 
-export default style;
+export default styleconfig;
