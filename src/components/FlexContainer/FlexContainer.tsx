@@ -12,6 +12,9 @@ interface FlexContainerProps {
 		| "space-evenly";
 	alignItems?: "flex-start" | "flex-end" | "center";
 	flex?: string;
+	style?: React.CSSProperties;
+	children?: React.ReactNode;
+	onClick?: () => void;
 }
 
 const FlexContainer = (props: FlexContainerProps) => {
@@ -23,9 +26,17 @@ const FlexContainer = (props: FlexContainerProps) => {
 		justifyContent: props.justifyContent || "center",
 		alignItems: props.alignItems || "center",
 		flex: props.flex || "0 1 auto",
+		...props.style,
 	};
 
-	return <div style={flexStyle}></div>;
+	return (
+		<div
+			style={flexStyle}
+			onClick={props.onClick}
+		>
+			{props.children}
+		</div>
+	);
 };
 
 export default FlexContainer;
